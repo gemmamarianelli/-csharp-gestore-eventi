@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -44,32 +45,15 @@ namespace GestoreEventi
         }
 
         //SETTERS
-        public string SetTitolo(string Titolo)
-        {
-            if (titolo == null|| titolo == "")
-            {
-               throw new Exception( "titolo evento non valido");
-            }
-            return titolo;
-        }
+       
         public string SetData()
         {
-            if(data == null)
-            {
-                throw new Exception("data non disponibile");
-            }
-            string dataStringa = Console.ReadLine();
-            DateTime corrente = DateTime.Now;
-            DateTime dataInserita = DateTime.Parse(dataStringa);
-            if (dataInserita < corrente)
-            {
-                throw new Exception("la data inserita è passata");
-
-            }
-            return dataStringa;
-           
+            return data;
         }
-
+        public string SetTitolo()
+        {
+            return titolo;
+        }
         
         
         public void PrenotaPosti()
@@ -90,6 +74,6 @@ namespace GestoreEventi
             
         }
        
-        
+       
     }
 }
