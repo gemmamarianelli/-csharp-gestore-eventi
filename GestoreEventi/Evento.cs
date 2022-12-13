@@ -13,11 +13,11 @@ namespace GestoreEventi
         //ATTRIBUTI
 
         private string titolo;
-        private double data;
+        private string data;
         private int capienzaMassima;
         private int postiPrenotati;
 
-        public Evento(string titolo, double data, int capienzaMassima, int postiPrenotati)
+        public Evento(string titolo, string data, int capienzaMassima, int postiPrenotati)
         {
             this.titolo = titolo;
             this.data = data;
@@ -29,7 +29,7 @@ namespace GestoreEventi
         public string GetTitolo() {
             return titolo;
         }
-        public double GetData()
+        public string GetData()
         {
             return data;
         }
@@ -52,14 +52,21 @@ namespace GestoreEventi
             }
             return titolo;
         }
-        public double SetData()
+        public string SetData()
         {
             if(data == null)
             {
                 throw new Exception("data non disponibile");
             }
+            string dataStringa = Console.ReadLine();
             DateTime corrente = DateTime.Now;
-            return data;
+            DateTime dataInserita = DateTime.Parse(dataStringa);
+            if (dataInserita < corrente)
+            {
+                throw new Exception("la data inserita è passata");
+
+            }
+            return dataStringa;
            
         }
 
