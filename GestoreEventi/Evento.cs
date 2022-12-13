@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -20,7 +21,7 @@ namespace GestoreEventi
         {
             this.titolo = titolo;
             this.data = data;
-            this.capienzaMassima = capienzaMassima;
+            this.capienzaMassima = 150;
             this.postiPrenotati = postiPrenotati;
         }
 
@@ -38,34 +39,44 @@ namespace GestoreEventi
         }
         public int GetPostiPrenotati()
         {
-            if(postiPrenotati < 0)
-            {
-                Console.WriteLine("Posto non valido");
-            }
+            
             return postiPrenotati;
         }
 
         //SETTERS
         public string SetTitolo(string Titolo)
         {
-             Console.WriteLine("inserisci titolo: ");
-           string nome =  Console.ReadLine();
-            if (nome == null)
+            if (titolo == null|| titolo == "")
             {
                throw new Exception( "titolo evento non valido");
             }
-            return nome;
+            return titolo;
         }
         public double SetData()
         {
-            return this.data;
+            if(data == null)
+            {
+                throw new Exception("data non disponibile");
+            }
+            DateTime corrente = DateTime.Now;
+            return data;
+           
         }
 
         
         
         public void PrenotaPosti()
         {
-          
+            if (postiPrenotati > 150)
+            {
+                throw new Exception("non puoi prenotare più di 150 posti");
+            }
+            if (postiPrenotati < 0)
+            {
+                throw new Exception("posto non disponibile");
+            }
+
+           
         }
        public void DisdiciPosti()
         {
