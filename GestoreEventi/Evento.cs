@@ -38,23 +38,39 @@ namespace GestoreEventi
         }
         public int GetPostiPrenotati()
         {
+            if(postiPrenotati < 0)
+            {
+                Console.WriteLine("Posto non valido");
+            }
             return postiPrenotati;
         }
 
         //SETTERS
-        public string SetTitolo()
+        public string SetTitolo(string Titolo)
         {
-            return this.titolo;
+             Console.WriteLine("inserisci titolo: ");
+           string nome =  Console.ReadLine();
+            if (nome == null)
+            {
+               throw new Exception( "titolo evento non valido");
+            }
+            return nome;
         }
         public double SetData()
         {
             return this.data;
         }
 
-        //COSTRUTTORI
         
         
-       
+        public void PrenotaPosti()
+        {
+          
+        }
+       public void DisdiciPosti()
+        {
+            
+        }
        
         
     }
