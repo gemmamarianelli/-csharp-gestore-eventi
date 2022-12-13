@@ -75,7 +75,7 @@ namespace GestoreEventi
             {
                 throw new Exception("posto non disponibile");
             }
-
+             
            
         }
        public void DisdiciPosti()
