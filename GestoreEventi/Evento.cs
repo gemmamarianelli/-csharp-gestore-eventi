@@ -20,8 +20,8 @@ namespace GestoreEventi
 
         public Evento(string titolo, string data, int capienzaMassima, int postiPrenotati)
         {
-            this.titolo = titolo;
-            this.data = data;
+            titoloGiusto(titolo);
+            impostData(data);
             this.capienzaMassima = 150;
             this.postiPrenotati = postiPrenotati;
         }
@@ -46,34 +46,68 @@ namespace GestoreEventi
 
         //SETTERS
        
-        public string SetData()
+        public void SetData(string data)
         {
-            return data;
+            this.data = data;
         }
-        public string SetTitolo()
+        public void SetTitolo(string titolo)
         {
-            return titolo;
+            this.titolo = titolo;
         }
         
-        
-        public void PrenotaPosti()
+        public void impostData(string data)
         {
-            if (postiPrenotati > 150)
+       
+            string dataStringa = Console.ReadLine();
+            DateTime corrente = DateTime.Now;
+            DateTime dataInserita = DateTime.Parse(dataStringa);
+            if (dataInserita < corrente)
+            {
+                throw new Exception("la data inserita è passata");
+
+            }
+
+            this.data = data;
+
+        }
+        public void titoloGiusto(string titolo)
+        {
+            if (titolo == null)
+            {
+                throw new Exception("titolo evento non valido");
+            }
+            this.titolo = titolo;
+
+        }
+        public void PrenotaPosti(int postiDaprenotare)
+        {
+            postiPrenotati = postiPrenotati + postiDaprenotare;
+
+
+            if (postiDaprenotare > 150)
             {
                 throw new Exception("non puoi prenotare più di 150 posti");
             }
-            if (postiPrenotati < 0)
+            if (postiDaprenotare < 0)
             {
                 throw new Exception("posto non disponibile");
             }
-             
+            
            
         }
-       public void DisdiciPosti()
+        public void DisdiciPosti(int postiDaRimuovere)
         {
-            
+            postiPrenotati = postiPrenotati - postiDaRimuovere;
+            if (postiDaRimuovere == 0)
+            {
+                throw new Exception("non hai posti da rimuovere");
+            }
         }
-       
-       
+        public override string ToString()
+        {
+            return data.ToString() + " - " + titolo.ToString();
+        }
+
+
     }
 }
